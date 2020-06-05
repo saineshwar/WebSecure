@@ -11,23 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSecure.Repository", "Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebSecure.ViewModel", "WebSecure.ViewModel\WebSecure.ViewModel.csproj", "{F17C0FCE-30FE-49B6-AF91-597499C81290}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{11D252DC-2F05-4033-BF5D-A97B2CAD169B}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\Desktop\New folder (2)\1.png = ..\..\..\Desktop\New folder (2)\1.png
-		..\..\..\Desktop\New folder (2)\10.png = ..\..\..\Desktop\New folder (2)\10.png
-		..\..\..\Desktop\New folder (2)\11.png = ..\..\..\Desktop\New folder (2)\11.png
-		..\..\..\Desktop\New folder (2)\12.png = ..\..\..\Desktop\New folder (2)\12.png
-		..\..\..\Desktop\New folder (2)\13.png = ..\..\..\Desktop\New folder (2)\13.png
-		..\..\..\Desktop\New folder (2)\2.png = ..\..\..\Desktop\New folder (2)\2.png
-		..\..\..\Desktop\New folder (2)\3.png = ..\..\..\Desktop\New folder (2)\3.png
-		..\..\..\Desktop\New folder (2)\4.png = ..\..\..\Desktop\New folder (2)\4.png
-		..\..\..\Desktop\New folder (2)\5.png = ..\..\..\Desktop\New folder (2)\5.png
-		..\..\..\Desktop\New folder (2)\6.png = ..\..\..\Desktop\New folder (2)\6.png
-		..\..\..\Desktop\New folder (2)\7.png = ..\..\..\Desktop\New folder (2)\7.png
-		..\..\..\Desktop\New folder (2)\8.png = ..\..\..\Desktop\New folder (2)\8.png
-		..\..\..\Desktop\New folder (2)\9.png = ..\..\..\Desktop\New folder (2)\9.png
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
