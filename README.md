@@ -12,8 +12,21 @@ Each time you create a new application you need essential feature such as
 * Login
 * ChangePassword
 * ResetPassword
-* Email Verification of registered User
+* Email Verification of registered User 
 * Sending Email for Reset Password
+
+For Demo I have used gmail.
+(Application is Configured with Gmail For Sending Email enter details in appsettings.json)
+
+Making App Less Secure do at own Risk i am not responsible for it.
+
+* Open your Google Admin console (admin.google.com).
+* Click Security > Basic settings .
+* Under Less secure apps, select Go to settings for less secure apps .
+* In the subwindow, select the Enforce access to less secure apps for all users radio button. ...
+* Click the Save button.
+
+Enable less secure app on gmail for sending email from localhost :- https://hotter.io/docs/email-accounts/secure-app-gmail/
 
 ***
 ## Getting Started
