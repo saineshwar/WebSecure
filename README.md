@@ -111,5 +111,10 @@ Link to download SQL Server Express: - https://www.microsoft.com/en-us/sql-serve
 
 ![](https://github.com/saineshwar/WebSecure/blob/master/WebSecure/Images/12.png)
 
+### Database
 
+![](https://github.com/saineshwar/WebSecure/blob/master/WebSecure/Images/4.png)
 
+### Tables 
+
+![](https://github.com/saineshwar/WebSecure/blob/master/WebSecure/Images/5.png)
