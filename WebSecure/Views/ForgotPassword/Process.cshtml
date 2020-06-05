@@ -1,0 +1,32 @@
+﻿@model WebSecure.ViewModel.ForgotPasswordViewModel
+@{
+    ViewData["Title"] = "Process";
+}
+
+    <h5>Forgot Password</h5>
+<div class="col-sm-4">
+    <form method="post" id="loginform" name="loginform" enctype="multipart/form-data" asp-controller="ForgotPassword" asp-action="Process">
+
+        @if (TempData["ForgotPasswordMessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Message!</strong> @TempData["ForgotPasswordMessage"]
+            </div>
+        }
+          @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label for="UserName">UserName:</label>
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Username", @maxlength = 20, @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+        <button type="submit" id="btnsubmit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}

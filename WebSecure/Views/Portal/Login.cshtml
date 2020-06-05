@@ -1,0 +1,64 @@
+﻿@model WebSecure.ViewModel.LoginViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h5>Login</h5>
+<div class="col-sm-4">
+    <form method="post" id="loginform" name="loginform" enctype="multipart/form-data" asp-controller="Portal" asp-action="Login">
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @if (TempData["TokenErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Message!</strong> @TempData["TokenErrorMessage"]
+            </div>
+        }
+
+        @if (TempData["TokenMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Message!</strong> @TempData["TokenMessage"]
+            </div>
+        }
+
+
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label for="UserName">UserName:</label>
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Username", @maxlength = 20, @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="Password">Password:</label>
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password", @maxlength = 150, @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+        <button type="submit" id="btnsubmit" class="btn btn-primary">Submit</button>
+        <a href="/ForgotPassword/Process">Forgot Password</a> |
+        <a href="/Registration/Register">Registration</a>
+    </form>
+</div>
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/crypto/sha512.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#btnsubmit").click(function () {
+                if ($('#Password').val() != "" && $('#ConfirmPassword').val() != "") {
+                    var password = $('#Password').val();
+                    var passwordhash = sha512(password);
+                    $('#Password').val(passwordhash);
+                }
+                $("#loginform").submit();
+
+            });
+        });
+
+    </script>
+}

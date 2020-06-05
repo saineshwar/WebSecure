@@ -1,0 +1,114 @@
+﻿@model WebSecure.ViewModel.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+    <h5>Register</h5>
+<div class="col-sm-4">
+
+    @if (TempData["Registered_Error_Message"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Message!</strong> @TempData["Registered_Error_Message"]
+        </div>
+    }
+
+    @if (TempData["Registered_Success_Message"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Message!</strong> @TempData["Registered_Success_Message"]
+        </div>
+    }
+
+    <form method="post" id="loginform" name="loginform" enctype="multipart/form-data" asp-controller="Registration" asp-action="Register">
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label for="FullName">FullName:</label>
+            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @placeholder = "FullName", @maxlength = 50, @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="UserName">UserName:</label>
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Username", @maxlength = 50, @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="UserName">Email:</label>
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email", @maxlength = 100, @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="UserName">Phoneno:</label>
+            @Html.TextBoxFor(model => model.Phoneno, new { @class = "form-control", @placeholder = "Phoneno", @maxlength = 20, @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.Phoneno, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="Password">Password:</label>
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password", @maxlength = 150, @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label for="ConfirmPassword">ConfirmPassword:</label>
+            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control", @placeholder = "ConfirmPassword", @maxlength = 150, @autocomplete = "off" })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit" id="btnsubmit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/crypto/sha512.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#btnsubmit").click(function () {
+                if ($('#Password').val() != "" && $('#ConfirmPassword').val() != "") {
+                    if (validatePassword($('#Password').val()) == false) {
+                        alert('New Password Must Have Minimum 7 characters at least 1 Alphabet, 1 Number and 1 Special Character !');
+                        return false;
+                    }
+                    else {
+                        var password = $('#Password').val();
+                        var passwordhash = sha512(password);
+
+                        var confirmpassword = $('#ConfirmPassword').val();
+                        var confirmpasswordhash = sha512(confirmpassword);
+
+                        $('#Password').val(passwordhash);
+                        $('#ConfirmPassword').val(confirmpasswordhash);
+                        $("#loginform").submit();
+                    }
+                }
+            });
+
+            $("#Password").blur(function (event) {
+                if (validatePassword($("#Password").val()) == false) {
+                    alert('New Password Must Have Minimum 7 characters at least 1 Alphabet, 1 Number and 1 Special Character !');
+                    $("#Password").val('');
+                }
+
+                var data = $("#Password").val().length;
+                if (data > 20) {
+                    alert('Maximum 20 character password is Allowed!');
+                    $("#Password").val('');
+                }
+            });
+        });
+
+        function validatePassword(password) {
+            var reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@@$!%*#?&])[A-Za-z\d$@@$!%*#?&]{7,}$/;
+            if (reg.test(password)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+
+    </script>
+}
